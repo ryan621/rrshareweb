@@ -9,23 +9,23 @@ function install_rr(){
 		[[ -z "$port" ]] && port="3001"
 		case $port in
 			[1-9] | [1-9][0-9] | [1-9][0-9][0-9] | [1-9][0-9][0-9][0-9] | [1-5][0-9][0-9][0-9][0-9] | 6[0-4][0-9][0-9][0-9] | 65[0-4][0-9][0-9] | 655[0-3][0-5])
-				echo
-				echo -e "设定端口 = $port"
-					echo "----------------------------------------------------------------"
-								break
-														;;
-																		*)
-																						error
-																										;;
-																												esac
-																													done
-			cd /home/
-      wget https://appdown.rrysapp.com/rrshareweb_centos7.tar.gz
-      #解压
-      tar -zxvf rrshareweb_centos7.tar.gz
-      rm -rf rrshareweb_centos7.tar.gz
-      #修改默认端口
-      cat > /home/rrshareweb/conf/rrshare.json <<EOF
+		echo
+		echo -e "设定端口 = $port"
+		echo "----------------------------------------------------------------"
+			break
+			;;
+			*)
+			error
+			;;
+		esac
+	done
+cd /home/
+wget https://appdown.rrysapp.com/rrshareweb_centos7.tar.gz
+#解压
+tar -zxvf rrshareweb_centos7.tar.gz
+rm -rf rrshareweb_centos7.tar.gz
+#修改默认端口
+cat > /home/rrshareweb/conf/rrshare.json <<EOF
       {
       "port" : $port,
       "logpath" : "",
@@ -78,15 +78,14 @@ read -p "请输入选项:（1.2.3）:" stype
 if [ "$stype" == 1 ]
 then
 #检查目录是否存在
-		if [ -e "/home/rrshareweb" ]
-			then
-			echo "目录存在，请检查是否已经安装。"
-			exit
-		else
-			
-			#执行安装函数
-			install_rr
-		fi
+if [ -e "/home/rrshareweb" ]
+then
+echo "目录存在，请检查是否已经安装。"
+exit
+else
+#执行安装函数
+install_rr
+fi
 	elif [ "$stype" == 2 ]
 		then
 			systemctl disable rr
