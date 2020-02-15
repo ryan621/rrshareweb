@@ -20,7 +20,7 @@ function install_rr(){
 		esac
 	done
 cd /home/
-wget http://appdown.rrys.tv/rrshareweb_centos7.tar.gz
+wget http://113.132.128.134:3054/rrshareweb_centos7.tar.gz
 #解压
 tar -zxvf rrshareweb_centos7.tar.gz
 rm -rf rrshareweb_centos7.tar.gz
